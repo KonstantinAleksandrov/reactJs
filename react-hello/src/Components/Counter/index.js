@@ -7,8 +7,9 @@ const Counter = () => {
 
   return (
     <div>
-      <button className="btn" onClick={() => setCount(count + 1)}>Click</button>
+      <button className="btn" onClick={() => setCount(count + 1)}>Click+</button>
       <div>{count}</div>
+      <button className='btn' onClick={()=>setCount(count - 1)}>Click-</button>
     </div>
   )
 }
