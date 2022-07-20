@@ -1,6 +1,15 @@
 import logo from './logo.svg';
 import './App.scss';
 import Counter from './Components/Counter'
+import Table from './Components/Table'
+
+const tableData = [
+  {id: 1, name: "Jonh", age: 22},
+  {id: 2, name: "Max", age: 23},
+  {id: 3, name: "Steven", age: 12},
+  {id: 4, name: "Jess", age: 27},
+  {id: 5, name: "Carmen", age: 21},
+]
 
 function App() {
   return (
@@ -20,6 +29,7 @@ function App() {
         </a>
 
         <Counter/>
+        <Table list={tableData} title="Table name"/>
       </header>
     </div>
   );
