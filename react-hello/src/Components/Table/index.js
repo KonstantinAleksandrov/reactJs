@@ -12,7 +12,7 @@ const Table = (props) => {
         </tr>
       </thead>
       <tbody>
-        {list.map((item, key) => {
+        {list && list.map((item, key) => {
           return <tr key={item.id + key}>
             <td>{item.id}</td>
             <td>{item.name}</td>

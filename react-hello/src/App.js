@@ -29,7 +29,7 @@ function App() {
         </a>
 
         <Counter/>
-        <Table list={tableData} title="Table name"/>
+        <Table list={tableData} title="Table name" />
       </header>
     </div>
   );

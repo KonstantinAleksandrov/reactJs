@@ -1,15 +1,25 @@
 import './style.scss'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import Button from "./Button";
 
 const Counter = () => {
   const [count, setCount] = useState(4)
+  console.log("render")
 
+  useEffect(() => {
+    console.log("did mount")
+    setCount(10)
+  }, [])
+
+  useEffect(() => {
+    console.log("did update")
+  }, [count])
 
   return (
     <div>
-      <button className={"btn"} style={{border: count > 0 ? "3px solid red" : "0"}} onClick={() => setCount(count + 1)}>Click+</button>
+      <Button handleClick={setCount}>Click+</Button>
       <div>{count}</div>
-      <button className='btn' style={{border: count < 0 ? "3px solid blue" : "0"}} onClick={()=>setCount(count - 1)}>Click-</button>
+      {count > 10 && <Button handleClick={setCount} modify={-1}>Click-</Button>}
     </div>
   )
 }
