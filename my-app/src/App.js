@@ -1,8 +1,10 @@
 import RenderList from './components/RenderList'
 import ShopItemFunc from './components/ShopItemFunc'
-import './styles/shop.css'
-import './styles/reset.css'
-import './styles/style.css'
+import './styles/shop.scss'
+import './styles/reset.scss'
+import './styles/style.scss'
+import Index from "./components/Form";
+
 function App() {
   const imageList = [{ image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png", name: "bridge" }, { image: "https://html5css.ru/css/img_forest.jpg", name: "forest" }]
   const item = {
@@ -25,6 +27,7 @@ function App() {
           <ShopItemFunc item ={item} />
         </div>
       </div>
+      <Index/>
     </div>
   );
 }

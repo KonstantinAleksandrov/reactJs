@@ -7,6 +7,8 @@ const RenderList = (props)=>{
             {list.map((item)=>{
                 return <CreateListItem picture={item} key={item.name}/>
             })}
+            {/*<CreateListItem picture={list[0].item}/>*/}
+            {/*<CreateListItem picture={list[1].item}/>*/}
         </div>
     )
 }

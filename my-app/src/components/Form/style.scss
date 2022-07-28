@@ -1,0 +1,14 @@
+form {
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  justify-content: space-between;
+
+   input {
+    border: 1px solid #444;
+    border-radius: 5px;
+    height: 20px;
+    width: 150px;
+    margin: 5px;
+  }
+}
