@@ -1,0 +1,69 @@
+/*Обнуление*/
+*{padding:0;margin:0;border:0;}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+:focus,:active{outline:none;}
+a:focus,a:active{outline:none;}
+nav,footer,header,aside{display:block;}
+html,body{height:100%;width:100%;font-size:100%;line-height:1;font-size:16px;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display:none;}
+button{cursor:pointer;}
+button::-moz-focus-inner{padding:0;border:0;}
+a,a:visited{text-decoration:none;}
+a:hover{text-decoration:none;}
+ul li{list-style:none;}
+img{vertical-align:top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}
+
+$maxWidth: 1440;
+$minWidth: 320;
+$maxWidthContainer: 1200;
+$md1: $maxWidthContainer + 12;
+$md2: 899.98;
+$md3: 599.98;
+$md4: 479.98;
+$mainColor: #FF7931;
+
+@mixin adaptive-value($property, $startSize, $minSize, $needWidth, $type) {
+    $addSize : $startSize - $minSize;
+
+    @if $type ==1 {
+        //Только если меньше контейнера
+        #{$property}: $startSize + px;
+
+        @media(max-width: #{$maxWidthContainer + px}) {
+            #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - #{$needWidth + px}) / #{$maxWidthContainer - 320}));
+        }
+    }
+
+    @else if $type ==2 {
+        //Только если больше контейнера
+        #{$property}: $startSize + px;
+
+        @media(min-width: #{$maxWidthContainer + px}) {
+            #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - #{$needWidth + px}) / #{$maxWidth - 320}));
+        }
+    }
+
+    @else {
+        //Всгда
+        #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - #{$needWidth + px}) / #{$maxWidth - 320}));
+    }
+}
+
+/*---------------------*/
+.btn{
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.App{
+    width: 800px;
+    margin: 0 auto;
+}

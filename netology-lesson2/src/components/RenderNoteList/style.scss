@@ -1,0 +1,47 @@
+.notes{
+    margin-top: 30px;
+}
+.noteList{
+    min-height: 200px;
+    width: 550px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    
+}
+.noteList__item{
+    flex: 0 0 240px;
+    height: 150px;
+    border: 1px solid black;
+    margin-bottom: 50px;
+    position: relative;
+}
+.item__text{
+    padding: 5px 20px 5px  20px;
+    height: 100%;
+    overflow: auto;
+    text-align: center;
+}
+.note__btn{
+    position: absolute;
+    top: -20px;
+    right: -20px;
+}
+.btn__cros{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    span{
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: red;
+        bottom: 50%;
+        left: 0;
+        transform: rotate(45deg);
+    }
+    span:last-child{
+        transform: rotate(-45deg);
+    }
+}

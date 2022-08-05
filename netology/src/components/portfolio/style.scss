@@ -1,0 +1,20 @@
+.portfolio{
+    width: 800px;
+    margin: 0 auto;
+}
+.nav{
+    display: flex;
+    margin-bottom: 10px;
+    .link{
+        padding: 3px 7px;
+        cursor: pointer;
+        border: 1px solid grey;
+        margin-right: 5px;
+    }
+    .active{
+        background-color: gray;
+    }
+    .link:last-child{
+        margin-right: 0;
+    }
+}
