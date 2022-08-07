@@ -7,8 +7,12 @@ const AddNote = (props) => {
     let noteCounter = useRef(0)
     let noteText = useRef('')
     let textareaText = useRef('')
+    let textarea = useRef(null)
+    console.log(textarea)
 
     useEffect(() => {
+        textarea.current.focus()
+
         fetch('http://127.0.0.1:902/catalog')
             .then(response => response.json())
             .then((result) => {
@@ -42,7 +46,7 @@ const AddNote = (props) => {
             fetch(`http://127.0.0.1:902/catalog`, requestOptions)
                 .then(response => response.json())
                 .then((result) => {
-                    props.rendering(Object.values(result))
+                    props.setList(Object.values(result))
                     noteCounter.current = +Object.values(result)[Object.values(result).length - 1].name
                     textareaText.value = ''
                     noteText.current = ''
@@ -56,7 +60,7 @@ const AddNote = (props) => {
         <div className='newNote'>
             <div className='newNote__title'>New note</div>
             <div className='newNote__body'>
-                <textarea onBlur={((e) => { saveText(e.target) ; textareaText = e.target})}></textarea>
+                <textarea ref={textarea} onBlur={((e) => { saveText(e.target) ; textareaText = e.target})}></textarea>
                 <div className='newNote__btn btn' onClick={(() => saveNote())}>
                     <span className='btn__arrow'>
                         <img src={Arrow} alt='arrow'></img>

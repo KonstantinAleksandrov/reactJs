@@ -3,8 +3,10 @@ import AddNote from '../AddNote'
 import UpdateNotes from '../UpdateNotes'
 import { useState, useEffect } from 'react'
 import './style.scss'
+
 const RenderNoteList = () => {
-    const [list, setList] = useState(null)
+    const [list, setList] = useState([])
+
     useEffect(() => {
         fetch('http://127.0.0.1:902/catalog')
             .then(response => response.json())
@@ -13,10 +15,8 @@ const RenderNoteList = () => {
             })
     }, [])
 
-    const rendering = (data) => {
-        setList(data)
-        console.log('rendering dune!')
-    }
+
+
 
     const delNote = (idNote) => {
         let raw = "";
@@ -35,9 +35,9 @@ const RenderNoteList = () => {
     }
     return (
         <div className='notes'>
-            <UpdateNotes rendering={rendering} />
+            <UpdateNotes setList={setList} />
             <ul className='noteList'>
-                {list === null ? console.log('tick') : list.map((item) => { // ??????
+                {list.map((item) => { // ??????
                     return (
                         <li className='noteList__item' key={item.name}>
                             <div className='item__text'>{item.text}</div>
@@ -51,7 +51,7 @@ const RenderNoteList = () => {
                     )
                 })}
             </ul>
-            <AddNote rendering={rendering} />
+            <AddNote setList={setList} />
         </div>
     )
 }
