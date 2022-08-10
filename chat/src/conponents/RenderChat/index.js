@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react'
 
 const RenderChat = () => {
     const [messages, setMessages] = useState({ counter: 0, arr: [] })
-    useEffect(()=>{
-        setTimeout(tick,2000)
-    },[])
+    useEffect(() => {
+        setTimeout(tick, 2000)
+    },[messages])
 
     /* setInterval(()=>{
      fetch(`http://localhost:7777/messages?from=${messages.id}`)
@@ -18,16 +18,18 @@ const RenderChat = () => {
          
      })
     },2000)  */
-    const tick =()=>{
+    const tick = () => {
         fetch(`http://localhost:7777/messages?from=${messages.counter}`)
-        .then(response => response.json())
-        .then(result=>{
-            if(result[result.length -1].id > messages.counter){
-                // почему здесь  messages не поменялся
-            }
-            setTimeout(tick,2000)
-        })
+            .then(response => response.json())
+            .then(result => {
+                if(result[result.length -1].id > messages.counter){
+                    setMessages({counter:result[result.length -1].id, arr: result})
+                    console.log(messages)
+                }
+                setTimeout(tick, 2000)
+            })
     }
+
 
     return (
         <ul className='listMassages'>
