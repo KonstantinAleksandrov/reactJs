@@ -9,7 +9,7 @@ const app = new Koa();
 app.use(cors());
 app.use(koaBody({json: true}));
 
-const messages = [];
+const messages = [{id: 1, content: "first content"}, {id: 2, content: "second content"}];
 let nextId = 1;
 
 const router = new Router();
