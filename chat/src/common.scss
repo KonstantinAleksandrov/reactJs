@@ -50,5 +50,12 @@ $mainColor: #FF7931;
         #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - #{$needWidth + px}) / #{$maxWidth - 320}));
     }
 }
+
+
+
+.active-link {
+    color: red;
+    border-bottom: 1px dotted red;
+}
  
 /*---------------------*/

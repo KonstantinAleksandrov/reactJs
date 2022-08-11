@@ -1,9 +1,13 @@
 import React from "react";
 import {useState,useEffect} from 'react'
 import './style.scss'
+import {useNavigate, useParams} from 'react-router-dom'
+
 const FormEnter = () => {
     const [formData, setFormData] = useState({ login: '', password: ''})
     const [formErrors, setFormErrors] = useState({})
+    const [formTouches, setFormTouches] = useState({})
+    const navigate = useNavigate()
 
     const validation = (values) => {
         const errors = {}
@@ -20,7 +24,12 @@ const FormEnter = () => {
         if(formData.login && formData.password){
             fetch(`http://127.0.0.1:903/catalog`)
             .then(response => response.json())
-            .then((result)=>console.log(result))
+            .then((result)=> {
+                console.log(result)
+                // navigate('/chat')
+            })
+              .finally(() => navigate('/chat'))
+
         }else{
             setFormErrors(validation(formData))
         }

@@ -1,41 +1,40 @@
 import { nanoid } from 'nanoid'
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import './style.scss'
 
+function getRandomColor() {
+  let letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
+
+const validation = (values) => {
+  const errors = {}
+  !values.login ? errors.login = "Поле обязательно для заполнения" : errors.login = ''
+  !values.password ? errors.password = "Поле обязательно для заполнения" : errors.password = ''
+  if (values.confirmation && values.confirmation !== values.password) {
+    errors.confirmation = 'Значения не совпадают'
+  } else if (!values.confirmation) {
+    errors.confirmation = "Поле обязательно для заполнения"
+  } else { errors.confirmation = '' }
+  return errors
+}
 
 const FormReg = () => {
     const [formData, setFormData] = useState({ login: '', password: '', confirmation: '' })
     const [formErrors, setFormErrors] = useState({})
 
-    const validation = (values) => {
-        const errors = {}
-        !values.login ? errors.login = "Поле обязательно для заполнения" : errors.login = ''
-        !values.password ? errors.password = "Поле обязательно для заполнения" : errors.password = ''
-        if (values.confirmation && values.confirmation !== values.password) {
-            errors.confirmation = 'Значения не совпадают'
-        } else if (!values.confirmation) {
-            errors.confirmation = "Поле обязательно для заполнения"
-        } else { errors.confirmation = '' }
-        return errors
-    }
-
-    function getRandomColor() {
-        let letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
-
     useEffect(() => {
         setFormErrors(validation(formData))
     }, [formData])
 
-    const createUser = () => {
-        if (!formData.login || !formData.password || !formData.confirmation || formData.password !== formData.confirmation) {
+    const createUser = useCallback(() => {
+        if (Object.keys(validation(formData)).length) {
             setFormErrors(validation(formData))
         } else {
             let myHeaders = new Headers();
@@ -59,7 +58,7 @@ const FormReg = () => {
                 .then(response => response.json())
                 .then(result=>console.log(result))
         }
-    }
+    }, [formData.login, formData.confirmation, formData.password])
 
     return (
         <div className="form-reg">
