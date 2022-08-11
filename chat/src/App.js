@@ -1,12 +1,14 @@
-import { nanoid } from 'nanoid'
+
 import './common.scss'
 import RenderChat from './conponents/RenderChat'
+import FormEnter from './conponents/FormEnter'
+import FormReg from './conponents/FormReg'
 
 function App() {
-  console.log(nanoid())
+
   return (
     <div className="App">
-      <RenderChat/>
+      <FormEnter/>
     </div>
   );
 }

@@ -50,5 +50,5 @@ $mainColor: #FF7931;
         #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - #{$needWidth + px}) / #{$maxWidth - 320}));
     }
 }
-
+ 
 /*---------------------*/

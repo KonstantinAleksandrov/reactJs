@@ -1,44 +1,37 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const RenderChat = () => {
     const [messages, setMessages] = useState({ counter: 0, arr: [] })
-    useEffect(() => {
-        setTimeout(tick, 2000)
-    },[messages])
+    const timerId = useRef(null)
 
-    /* setInterval(()=>{
-     fetch(`http://localhost:7777/messages?from=${messages.id}`)
-     .then(response => response.json())
-     .then(result => {
-         if(result[result.length -1].id > messages.counter){
-             setMessages({counter:result[result.length -1].id, arr: result})
-         }
-         console.log(result[result.length -1].id)
-         
-     })
-    },2000)  */
+    useEffect(() => {
+        if (timerId.current) {
+            clearTimeout(timerId.current)
+        }
+        setTimeout(tick, 2000)
+    }, [messages.counter])
+
     const tick = () => {
         fetch(`http://localhost:7777/messages?from=${messages.counter}`)
             .then(response => response.json())
             .then(result => {
-                if(result[result.length -1].id > messages.counter){
-                    setMessages({counter:result[result.length -1].id, arr: result})
-                    console.log(messages)
+                if (result[result.length - 1] && result[result.length - 1].id > messages.counter) {
+                    setMessages({ counter: result[result.length - 1].id, arr: result })
                 }
-                setTimeout(tick, 2000)
+                timerId.current = setTimeout(tick, 2000)
             })
     }
 
-
-    return (
-        <ul className='listMassages'>
+      return (
+        <ul>
             {messages.arr.map((message) => {
                 return (
-                    <li className='message' key={message.id}>{message.content}</li>
+                    <li key={message.id}>{message.content}</li>
                 )
             })}
         </ul>
     )
+
 }
 export default RenderChat

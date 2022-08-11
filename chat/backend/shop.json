@@ -1,0 +1,17 @@
+{
+    "catalog": {
+        "IronMan": {
+            "name": "IronMan",
+            "password": "ironpatriot",
+            "key": "28Bx5w2ZQj-NnHzTQWIpZ",
+            "color": "#01AB03"
+        },
+        "Сельдь": {
+            "name": "Сельдь",
+            "password": "12345",
+            "key": "V04YEoXo_vBoZ9e8EwAwU",
+            "color": "#F5EBE3"
+        }
+    },
+    "card": []
+}
