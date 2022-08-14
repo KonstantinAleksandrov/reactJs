@@ -7,7 +7,7 @@ const FormEnter = () => {
     const [formData, setFormData] = useState({ login: '', password: ''})
     const [formErrors, setFormErrors] = useState({})
     const [formTouches, setFormTouches] = useState({})
-    const navigate = useNavigate()
+    /* const navigate = useNavigate() */
 
     const validation = (values) => {
         const errors = {}
@@ -26,9 +26,9 @@ const FormEnter = () => {
             .then(response => response.json())
             .then((result)=> {
                 console.log(result)
-                // navigate('/chat')
+                 /* navigate('/chat') */
             })
-              .finally(() => navigate('/chat'))
+              /* .finally(() => navigate('/chat')) */
 
         }else{
             setFormErrors(validation(formData))
@@ -59,7 +59,7 @@ const FormEnter = () => {
                 Пароль
                 <span className="erroStyle">{formErrors.password}</span>
                 <div className="buttons">
-                    <div className="btn" onClick={()=>enter()} >Вход</div>
+                    <div  className="btn" onClick={()=>enter()} >Вход</div>
                     <div className="btn btn-reg" >Регистрация</div>
                 </div>
             </div>

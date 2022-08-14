@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 
-const RenderChat = () => {
+const Chat = () => {
     const [messages, setMessages] = useState({ counter: 0, arr: [] })
     const timerId = useRef(null)
 
-    useEffect(() => {
+   /*  useEffect(() => {
         if (timerId.current) {
             clearTimeout(timerId.current)
         }
@@ -21,17 +21,13 @@ const RenderChat = () => {
                 }
                 timerId.current = setTimeout(tick, 2000)
             })
-    }
+    } */
 
       return (
         <ul>
-            {messages.arr.map((message) => {
-                return (
-                    <li key={message.id}>{message.content}</li>
-                )
-            })}
+            <li> привет андрей</li>
         </ul>
     )
 
 }
-export default RenderChat
+export default Chat
