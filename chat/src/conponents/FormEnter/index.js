@@ -9,18 +9,19 @@ const FormEnter = () => {
     const [formTouches, setFormTouches] = useState({})
     /* const navigate = useNavigate() */
 
-    const validation = (values) => {
+    const validation = (values) => { // useMemo
         const errors = {}
         !values.login ? errors.login = "Поле обязательно для заполнения" : errors.login = ''
         !values.password ? errors.password = "Поле обязательно для заполнения" : errors.password = ''
         return errors
     }
+
     useEffect(() => {
         setFormErrors(validation(formData))
     }, [formData])
 
 
-    const enter = () =>{
+    const enter = () => { // useCallback
         if(formData.login && formData.password){
             fetch(`http://127.0.0.1:903/catalog`)
             .then(response => response.json())
@@ -57,9 +58,9 @@ const FormEnter = () => {
                     }}
                 />
                 Пароль
-                <span className="erroStyle">{formErrors.password}</span>
+                <span className="erroStyle">{formErrors.password}</span> {/*Вынести в отдельный компонент Input*/}
                 <div className="buttons">
-                    <div  className="btn" onClick={()=>enter()} >Вход</div>
+                    <div  className="btn" onClick={()=>enter()} >Вход</div> {/*Вынести в отдельный компонент Button*/}
                     <div className="btn btn-reg" >Регистрация</div>
                 </div>
             </div>

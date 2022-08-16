@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, memo} from 'react'
 
 let counter = 0
 
@@ -35,6 +35,7 @@ const CreateListItem = (props) =>{
     }, [isActive])
 
     console.log('rerender number '+ counter++)
+
     return (
         <div className='item'>
 
@@ -45,7 +46,8 @@ const CreateListItem = (props) =>{
                 <Image picture={props.picture.image}/>
             </div>}
           <button onClick={change}>Click</button>
+          <button onClick={props.setToggle}>Click Toggle</button>
         </div>
     ) 
 }
-export default CreateListItem;
+export default memo(CreateListItem);
