@@ -1,0 +1,46 @@
+.chat{
+    width: 900px;
+    margin: 50px auto 0 auto;
+    ul{
+        width: 100%;
+        min-height: 300px;
+        border: 1px solid black;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+}
+.createMessange{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    textarea{
+        width: 250px;
+        height: 70px;
+        border: 1px solid black;
+        border-radius: 10px;
+        resize: none;
+        padding: 5px;
+        margin-right: 10px;
+    }
+}
+li{
+    margin-bottom: 15px;
+}
+.messange{
+    display: flex;
+    justify-content: flex-end;
+    .text{
+        border: 1px solid black;
+        border-radius: 15px;
+        padding: 10px 15px 10px 15px;
+    }
+}
+.myMessange{
+    display: flex;
+    justify-content: flex-start;
+    .text{
+        border: 2px solid lightgreen;
+        border-radius: 15px;
+        padding: 10px 15px 10px 15px;
+    }
+}
