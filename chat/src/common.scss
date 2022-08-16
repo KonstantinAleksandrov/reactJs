@@ -52,10 +52,12 @@ $mainColor: #FF7931;
 }
 
 
-
-.active-link {
-    color: red;
-    border-bottom: 1px dotted red;
+.btn{
+    color: black;
 }
- 
+.erroStyle{
+    display: block;
+    color: red;
+    font-size: 12px;
+}
 /*---------------------*/
