@@ -1,7 +1,9 @@
 import React from "react";
 import { useState, useEffect } from 'react'
 import './style.scss'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import Modal from "../Modal";
+import FormReg from "../FormReg";
 
 const validation = (values) => {
     const errors = {}
@@ -14,7 +16,10 @@ const FormEnter = (props) => {
     const [formErrors, setFormErrors] = useState({})
     const [formTouches, setFormTouches] = useState({})
     const [checkUser,setCheckUser] = useState(true)
-    /*  const navigate = useNavigate() */
+
+    const [isOpen, setIsOpen] = useState(false)
+
+    const navigate = useNavigate()
 
     const validation = (values) => { // useMemo
         const errors = {}
@@ -38,7 +43,8 @@ const FormEnter = (props) => {
                         if(key === formData.login){
                             if(result[key].password === formData.password){
                                 setCheckUser(true)
-                                props.renderChat({uniqueKey:result[key].key,color:result[key].color,start:true})
+                                // props.renderChat({uniqueKey:result[key].key,color:result[key].color,start:true})
+                                navigate('/chat')
                             }else{
                                 setCheckUser(false) 
                             }
@@ -96,9 +102,11 @@ const FormEnter = (props) => {
                 { checkUser || <div className="chekUser">Неверный логин или пароль</div>}
                 <div className="buttons">
                     <div className="btn" onClick={() => enter()} >Вход</div>
-                    <div className="btn btn-reg" >Регистрация</div>
+                    {/*<Link to="/sign-up"><div className="btn btn-reg" >Регистрация</div></Link>*/}
+                    <div onClick={() => setIsOpen(true)} className="btn btn-reg" >Регистрация</div>
                 </div>
             </div>
+            {isOpen && <Modal setIsOpen={setIsOpen}><FormReg/></Modal>}
         </div>
     )
 }
