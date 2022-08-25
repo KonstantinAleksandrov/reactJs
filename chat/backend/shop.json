@@ -23,6 +23,12 @@
             "password": "воняешь",
             "key": "DPwCXRD9_Nc4tsRJXun_O",
             "color": "#4218BB"
+        },
+        "root": {
+            "name": "root",
+            "password": "admin",
+            "key": "wTri0VKmFd42Ay95qYExC",
+            "color": "#74ABDC"
         }
     },
     "card": [
@@ -136,6 +142,13 @@
                 "text": "qwrqwr",
                 "color": "#F5EBE3",
                 "userName": "Сельдь"
+            }
+        },
+        {
+            "wTri0VKmFd42Ay95qYExC": {
+                "text": "Hello world!!",
+                "color": "#74ABDC",
+                "userName": "root"
             }
         }
     ]

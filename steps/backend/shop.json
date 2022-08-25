@@ -2,24 +2,19 @@
     "catalog": {},
     "posts": [
         {
-            "date": "2022-08-01",
-            "distance": "1",
-            "id": 0
-        },
-        {
             "date": "2022-08-02",
             "distance": "3",
-            "id": 1
+            "id": 6
         },
         {
-            "date": "2022-08-03",
-            "distance": "5",
-            "id": 2
+            "date": "2022-08-18",
+            "distance": "2",
+            "id": 7
         },
         {
             "date": "2022-08-04",
-            "distance": "2",
-            "id": 3
+            "distance": "1",
+            "id": 8
         }
     ]
 }

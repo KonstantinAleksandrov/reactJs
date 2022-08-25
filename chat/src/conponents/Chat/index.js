@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import { useState, useEffect, useRef } from 'react'
 import './style.scss'
 
@@ -8,6 +8,7 @@ const Chat = () => {
     const timerId = useRef(null)
     let user = useRef(JSON.parse(localStorage.getItem('user')))
     const ul = useRef()
+
     useEffect(() => {
         if (timerId.current) {
             clearTimeout(timerId.current)
@@ -28,7 +29,7 @@ const Chat = () => {
             })
     }
 
-    const sendMessange =()=>{
+    const sendMessange = useCallback(() => {
         let myHeaders = new Headers();
          myHeaders.append("Content-Type", "application/json");
 
@@ -45,15 +46,16 @@ const Chat = () => {
         .then(()=>{
             text.value = ''
         })
-    }
+    }, [text.value, user.current.color, user.current.name, user.current.key])
+
     return (
         <div className='chat' >
             <ul ref={ul}>
                 {messages.arr.map((item) => {
                     return (
-                        <li  className={Object.keys(item)[0] === user.current.key? 'myMessange' :'messange'}> {/* как передать индивидуальный color? */}
+                        <li  className={Object.keys(item)[0] === user.current.key? 'myMessange' :'messange'} > {/* как передать индивидуальный color? */}
                             <div className='name'>{Object.values(item)[0].userName}</div>
-                            <div className='text'>{Object.values(item)[0].text}</div>
+                            <div className='text' style={{borderColor: Object.values(item)[0].color}}>{Object.values(item)[0].text}</div>
                         </li>
                     )
                 })}

@@ -76,7 +76,8 @@ app.put('/posts', (req, res) => {
 
 app.delete('/posts/:key', (req, res) => {
   const removedItem = req.params.key
-  db.delete(`/posts[${removedItem}]`);
+  const index = db.getIndex("/posts", Number(removedItem), 'id' )
+  db.delete(`/posts[${index}]`);
   res.send(db.getData("/posts"))
 })
 

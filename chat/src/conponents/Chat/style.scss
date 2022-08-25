@@ -47,7 +47,7 @@ li{
     display: flex;
     justify-content: flex-start;
     .text{
-        border: 2px solid lightgreen;
+        border: 2px solid lightgreen !important;
         border-radius: 15px;
         padding: 10px 15px 10px 15px;
     }

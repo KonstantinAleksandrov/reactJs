@@ -9,7 +9,7 @@ const RemovePost = ({ id, renderPosts }) => {
             method: 'DELETE',
             redirect: 'follow'
         };
-        fetch(`http://127.0.0.1:900/posts/${id - 1}`, requestOptions)
+        fetch(`http://127.0.0.1:900/posts/${id}`, requestOptions)
             .then(response => response.json())
             .then((result) => renderPosts(result))
     }
