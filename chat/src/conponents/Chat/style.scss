@@ -1,9 +1,9 @@
 .chat{
     width: 900px;
-    margin: 50px auto 0 auto;
     ul{
         width: 100%;
-        min-height: 300px;
+        height: 500px;
+        overflow: auto;
         border: 1px solid black;
         margin-bottom: 20px;
         padding: 10px;
@@ -24,7 +24,9 @@
     }
 }
 li{
+    padding-top:15px;
     margin-bottom: 15px;
+    position: relative;
 }
 .messange{
     display: flex;
@@ -34,6 +36,12 @@ li{
         border-radius: 15px;
         padding: 10px 15px 10px 15px;
     }
+    .name{
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 12px;
+    }
 }
 .myMessange{
     display: flex;
@@ -42,5 +50,11 @@ li{
         border: 2px solid lightgreen;
         border-radius: 15px;
         padding: 10px 15px 10px 15px;
+    }
+    .name{
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 12px;
     }
 }

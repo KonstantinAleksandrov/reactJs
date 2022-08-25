@@ -9,7 +9,7 @@ import {Routes, Route} from "react-router-dom";
 function App() {
   const[goChat,setGoChat]=useState({uniqueKey:'',color:'',start: false})
   return (
-    <div className="App">
+    <div className="App" >
       <Routes>
         <Route path="/" element={<FormEnter/>}/>
         <Route path="/chat" element={<Chat userInformation={{key:goChat.uniqueKey,color:goChat.color}}/>}/>

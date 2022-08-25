@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid'
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
+import { useNavigate} from 'react-router-dom'
 import './style.scss'
 
 function getRandomColor() {
@@ -30,15 +31,18 @@ const FormReg = () => {
     const [formErrors, setFormErrors] = useState({})
     const [formTouches, setFormTouches] = useState({})
 
+    const navigate = useNavigate()
+    
     useEffect(() => {
         setFormErrors(validation(formData))
     }, [formData])
 
     const createUser = () => {
-        if (Object.keys(validation(formData)).length) {
+        if (Object.values(validation(formData)).filter((item)=>item !== '').length) {
             formTouches.login = true
             formTouches.password = true
             formTouches.confirmation = true
+            console.log(Object.values(validation(formData)))
             setFormErrors(validation(formData))
         } else {
             let myHeaders = new Headers();
@@ -60,12 +64,15 @@ const FormReg = () => {
 
             fetch(`http://127.0.0.1:903/catalog`, requestOptions)
                 .then(response => response.json())
-                .then(result => console.log(result))
+                .then(result => {
+                    localStorage.setItem('user',raw)
+                    navigate('/chat')
+                })
         }
     }
 
     return (
-        <div className="form-reg">
+        <div className="form-reg" onClick={(e)=>e.stopPropagation()}>
             <div className='form-reg__container'>
                 <div className='item'>
                     <input

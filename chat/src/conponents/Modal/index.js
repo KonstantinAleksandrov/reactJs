@@ -6,7 +6,7 @@ const modalPortal = document.querySelector('#modal')
 const modal = document.createElement('div')
 
 const Modal = ({children, setIsOpen}) => {
-
+  
   useEffect(() => {
     modalPortal.append(modal)
 
@@ -17,8 +17,8 @@ const Modal = ({children, setIsOpen}) => {
 
   return (
     ReactDOM.createPortal(
-      <div className="modal-container" onClick={() => setIsOpen(false)}>
-        <div className="modal-window" onClick={(e) => e.stopPropagation()}>{children}</div>
+      <div className="modal-container" onClick={()=>setIsOpen(false)}>
+        {children}
       </div>,
       modal
     )

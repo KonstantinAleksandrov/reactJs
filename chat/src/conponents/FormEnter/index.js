@@ -11,7 +11,7 @@ const validation = (values) => {
     !values.password ? errors.password = "Поле обязательно для заполнения" : errors.password = ''
     return errors
 }
-const FormEnter = (props) => {
+const FormEnter = () => {
     const [formData, setFormData] = useState({ login: '', password: '' })
     const [formErrors, setFormErrors] = useState({})
     const [formTouches, setFormTouches] = useState({})
@@ -43,7 +43,7 @@ const FormEnter = (props) => {
                         if(key === formData.login){
                             if(result[key].password === formData.password){
                                 setCheckUser(true)
-                                // props.renderChat({uniqueKey:result[key].key,color:result[key].color,start:true})
+                                localStorage.setItem('user',JSON.stringify(result[key]))
                                 navigate('/chat')
                             }else{
                                 setCheckUser(false) 
@@ -52,9 +52,7 @@ const FormEnter = (props) => {
                             setCheckUser(false)
                         }
                     }
-                    /* navigate('/chat') */
                 })
-            /* .finally(() => navigate('/chat'))  */
 
         } else {
             formTouches.login = true

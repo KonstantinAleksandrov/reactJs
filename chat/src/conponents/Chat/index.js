@@ -2,16 +2,20 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import './style.scss'
 
-const Chat = (props) => {
+const Chat = () => {
     let text = useRef()
     const [messages, setMessages] = useState({ counter: 0, arr: [] })
     const timerId = useRef(null)
+    let user = useRef(JSON.parse(localStorage.getItem('user')))
+    const ul = useRef()
     useEffect(() => {
         if (timerId.current) {
             clearTimeout(timerId.current)
+            ul.current.scrollTop =  ul.current.scrollHeight -  ul.current.offsetHeight
         }
         setTimeout(tick, 1500)
     }, [messages.counter])
+    
 
     const tick = () => {
         fetch(`http://127.0.0.1:903/card`)
@@ -29,7 +33,7 @@ const Chat = (props) => {
          myHeaders.append("Content-Type", "application/json");
 
          let raw = JSON.stringify({
-            [props.userInformation.key] : {'text' :text.value,'color':props.userInformation.color}
+            [user.current.key] : {'text' :text.value,'color':user.current.color,'userName' : user.current.name}
         });
          let requestOptions = {
             method: 'POST',
@@ -43,11 +47,12 @@ const Chat = (props) => {
         })
     }
     return (
-        <div className='chat'>
-            <ul>
+        <div className='chat' >
+            <ul ref={ul}>
                 {messages.arr.map((item) => {
                     return (
-                        <li className={Object.keys(item)[0] === props.userInformation.key? 'myMessange' :'messange'} >
+                        <li  className={Object.keys(item)[0] === user.current.key? 'myMessange' :'messange'}> {/* как передать индивидуальный color? */}
+                            <div className='name'>{Object.values(item)[0].userName}</div>
                             <div className='text'>{Object.values(item)[0].text}</div>
                         </li>
                     )
