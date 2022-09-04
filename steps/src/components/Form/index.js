@@ -20,7 +20,7 @@ const Reducer = (state, action) => {
     }
 }
 
-const Form = ({ lastPost, renderPosts }) => {
+const Form = ({ lastPostId, renderPosts }) => {
     // const [newPost, setNewPost] = useState(initialState)
     const [state, dispatch] = useReducer(Reducer, initialState)
 
@@ -30,8 +30,9 @@ const Form = ({ lastPost, renderPosts }) => {
         } else {
             let myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
+            const newId = (lastPostId < 0) ? 0 : lastPostId + 1
 
-            let raw = JSON.stringify({ ...state, "id": !lastPost? 0 : lastPost.id + 1});
+            let raw = JSON.stringify({ ...state, "id": newId});
 
             let requestOptions = {
                 method: 'POST',
