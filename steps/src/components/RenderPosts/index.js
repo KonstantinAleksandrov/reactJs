@@ -2,8 +2,14 @@ import './style.scss'
 import React from 'react'
 import Post from '../Post'
 
-const RenderPosts = ({posts,renderPosts}) => {
+const RenderPosts = ({posts,renderPosts,openModal}) => {
 
+    posts.sort((a,b)=>{
+        if(a.date > b.date) return 1
+        if(a.date < b.date) return -1
+        if(a.date === b.date) return 0
+    })
+    
     return (
         <table className='posts'>
             <thead>
@@ -16,7 +22,7 @@ const RenderPosts = ({posts,renderPosts}) => {
             <tbody className='posts__body'>
                 {posts.map((item) => {
                     return(
-                        <Post date={item.date} distance={item.distance} key={item.id} id={item.id} renderPosts={renderPosts}/>
+                        <Post date={item.date} distance={item.distance} key={item.id} id={item.id} renderPosts={renderPosts} openModal={openModal}/>
                     )
                 })}
             </tbody>

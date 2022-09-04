@@ -2,7 +2,7 @@ import './style.scss'
 import React from 'react'
 import Cross from './cross.svg'
 
-const RemovePost = ({ id, renderPosts }) => {
+const RemovePost = ({id, renderPosts }) => {
 
     const remove = () => {
         let requestOptions = {
