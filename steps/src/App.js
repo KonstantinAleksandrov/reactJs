@@ -16,7 +16,6 @@ function App() {
         setPosts([...result])
       })
   }, [])
-
   return (
     <div className="App">
       <Form lastPost={posts[posts.length - 1]} renderPosts={setPosts}/>
