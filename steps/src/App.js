@@ -18,11 +18,13 @@ function App() {
   }, [])
   return (
     <div className="App">
-      <Form lastPost={posts[posts.length - 1]} renderPosts={setPosts}/>
+      <Form lastPostId={Math.max(...posts.map(post => post.id))} renderPosts={setPosts}/>
       <RenderPosts posts={posts} renderPosts={setPosts} openModal={setOpenModal}/>
-      {openModal.active && <Modal editPost={posts.find((item)=>item.id ===openModal.id)} openModal={setOpenModal}></Modal>}
+      {openModal.active && <Modal editPost={posts.find((item)=>item.id ===openModal.id)} openModal={setOpenModal} setPosts={setPosts}></Modal>}
     </div>
   );
 }
+
+
 
 export default App;

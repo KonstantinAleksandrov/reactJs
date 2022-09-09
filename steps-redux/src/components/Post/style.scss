@@ -1,0 +1,13 @@
+.post{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.post:last-child{
+    margin-bottom:0;
+}
+.blockControl{
+    display: flex;
+    align-items: center;
+}
