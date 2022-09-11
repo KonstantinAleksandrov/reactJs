@@ -8,6 +8,8 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case 'GET_POSTS':
+    case 'EDIT_POST':
+    case 'ADD_POST':
       return {...state, posts: action.payload}
     case 'SET_ACTIVE_POST':
       return {...state, activePost: action.payload}
@@ -58,7 +60,28 @@ export const onSetNewPost = (lastPostId) => async (dispatch, getState) => {
       .then(response => response.json())
       .then((result) => {
         dispatch({type: "TRUNCATE"})
-        dispatch({type:'GET_POSTS',payload : result})
+        dispatch({type:'ADD_POST',payload : result})
       })
   }
+}
+
+export const onEditPost = () => (dispatch, getState) => {
+  const post = getState().postReducer.activePost
+
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  let requestOptions = {
+    method: 'PUT',
+    headers: myHeaders,
+    body: JSON.stringify(post),
+    redirect: 'follow'
+  };
+
+  fetch("http://127.0.0.1:900/posts", requestOptions)
+    .then(response => response.json())
+    .then((result) => {
+      dispatch({type: 'EDIT_POST', payload: result})
+      // dispatch({type: "CLOSE", payload: {}})
+    })
 }

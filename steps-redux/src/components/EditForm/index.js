@@ -1,4 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux';
+import {onEditPost} from '../../store/postReducer'
 
 const EditForm = () => {
   const dispatch = useDispatch()
@@ -11,24 +12,24 @@ const EditForm = () => {
     dispatch({type: 'CHANGE_DISTANCE', payload: value})
   }
 
-  const onEditPost = () => { // TODO: перенести в thunks
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    let requestOptions = {
-      method: 'PUT',
-      headers: myHeaders,
-      body: JSON.stringify(post),
-      redirect: 'follow'
-    };
-
-    fetch("http://127.0.0.1:900/posts", requestOptions)
-      .then(response => response.json())
-      .then((result) => {
-        dispatch({type: 'GET_POSTS', payload: result})
-        dispatch({type: "CLOSE", payload: {}})
-      })
-  }
+  // const onEditPost = () => { // TODO: перенести в thunks
+  //   let myHeaders = new Headers();
+  //   myHeaders.append("Content-Type", "application/json");
+  //
+  //   let requestOptions = {
+  //     method: 'PUT',
+  //     headers: myHeaders,
+  //     body: JSON.stringify(post),
+  //     redirect: 'follow'
+  //   };
+  //
+  //   fetch("http://127.0.0.1:900/posts", requestOptions)
+  //     .then(response => response.json())
+  //     .then((result) => {
+  //       dispatch({type: 'GET_POSTS', payload: result})
+  //       dispatch({type: "CLOSE", payload: {}})
+  //     })
+  // }
 
   return (
     <div className='form-edit' onClick={(e => e.stopPropagation())}>
@@ -42,7 +43,7 @@ const EditForm = () => {
         value={post.distance}
         onChange={(e) => changeDistance(e.target.value)}
       />
-      <div className='button' onClick={onEditPost}
+      <div className='button' onClick={() => dispatch(onEditPost())}
       ><span>ок</span></div>
     </div>
   )

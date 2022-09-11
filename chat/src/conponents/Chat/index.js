@@ -3,10 +3,10 @@ import { useState, useEffect, useRef } from 'react'
 import './style.scss'
 
 const Chat = () => {
-    let text = useRef()
-    const [messages, setMessages] = useState({ counter: 0, arr: [] })
+    let text = useRef() // to state
+    const [messages, setMessages] = useState({ counter: 0, arr: [] }) // to Redux
     const timerId = useRef(null)
-    let user = useRef(JSON.parse(localStorage.getItem('user')))
+    let user = useRef(JSON.parse(localStorage.getItem('user'))) // to middlewares
     const ul = useRef()
 
     useEffect(() => {
@@ -18,12 +18,12 @@ const Chat = () => {
     }, [messages.counter])
     
 
-    const tick = () => {
+    const tick = () => { // to thunks
         fetch(`http://127.0.0.1:903/card`)
             .then(response => response.json())
             .then(result => {
                 if (result.length > messages.counter) {
-                    setMessages({ counter: result.length, arr: result })
+                    setMessages({ counter: result.length, arr: result }) // to redux
                 }
                 timerId.current = setTimeout(tick, 1500)
             })

@@ -9,7 +9,7 @@ const EditPost = ({id}) => {
   const posts = useSelector((state) => state.postReducer.posts)
 
   const openModal = () => {
-    dispatch({type: "OPEN"})
+    dispatch({type: "OPEN", payload: 'edit-form'})
     dispatch({type: "SET_ACTIVE_POST", payload: posts.find((item) => item.id === id)})
 
   }

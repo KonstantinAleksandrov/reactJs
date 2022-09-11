@@ -5,6 +5,7 @@ import {formReducer} from './addPostReducer';
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 /* import {editPostReducer} from './editPostReducer' */
+import {closeModalMiddleware} from "./closeModalMiddleware";
 
 const rootReducer = combineReducers({
     postReducer,
@@ -12,4 +13,4 @@ const rootReducer = combineReducers({
     formReducer,
 })
 
-export const store = createStore(rootReducer, applyMiddleware(thunk, logger))
+export const store = createStore(rootReducer, applyMiddleware(thunk, closeModalMiddleware, logger))

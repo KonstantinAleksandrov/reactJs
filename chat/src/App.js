@@ -7,7 +7,7 @@ import { useState } from 'react';
 import {Routes, Route} from "react-router-dom";
 
 function App() {
-  const[goChat,setGoChat]=useState({uniqueKey:'',color:'',start: false})
+  const [goChat, setGoChat] = useState({uniqueKey:'',color:'',start: false}) // TODO: to redux
   return (
     <div className="App" >
       <Routes>

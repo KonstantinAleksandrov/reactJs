@@ -11,6 +11,7 @@ const validation = (values) => {
     !values.password ? errors.password = "Поле обязательно для заполнения" : errors.password = ''
     return errors
 }
+
 const FormEnter = () => {
     const [formData, setFormData] = useState({ login: '', password: '' })
     const [formErrors, setFormErrors] = useState({})
@@ -32,6 +33,14 @@ const FormEnter = () => {
     useEffect(() => {
         setFormErrors(validation(formData))
     }, [formData])
+
+    useEffect(() => {
+        // INITIAL_FORM
+
+        return () => {
+            // TRUNCATE_FORM
+        }
+    }, [])
 
 
     const enter = () => {
