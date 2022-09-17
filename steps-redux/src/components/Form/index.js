@@ -1,31 +1,14 @@
 import './style.scss'
 import { useDispatch, useSelector } from 'react-redux'
-const Form = ({ lastPostId}) => {
+import {lastIdSelector, onSetNewPost} from "../../store/postReducer";
+
+const Form = () => {
     const dispatch = useDispatch()
-    const state = useSelector((state)=>state.addPostRreducer)
+    const state = useSelector((state) => state.formReducer)
+    const lastPostId = useSelector(lastIdSelector)
+
     const addNewPost = () => {
-        if (!state.date || !state.distance) {
-            return
-        } else {
-            let myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            const newId = (lastPostId < 0) ? 0 : lastPostId + 1
-            let raw = JSON.stringify({ ...state, "id": newId});
-
-            let requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-
-            fetch("http://127.0.0.1:900/posts", requestOptions)
-                .then(response => response.json())
-                .then((result) => { 
-                    dispatch({type: "TRUNCATE"})
-                    dispatch({type:'RENDER_POSTS',payload : result})
-                })
-        }
+        dispatch(onSetNewPost(lastPostId))
     }
 
     return (

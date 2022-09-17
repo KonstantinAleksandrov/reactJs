@@ -1,65 +1,38 @@
 import React from "react";
-import { useState, useEffect } from 'react'
+import { useState, useEffect,useMemo} from 'react'
 import './style.scss'
-import { useNavigate, Link } from 'react-router-dom'
-import Modal from "../Modal";
-import FormReg from "../FormReg";
+import { useNavigate} from 'react-router-dom'
+import {useDispatch,useSelector} from 'react-redux';
+import {onEnter} from '../../store/FormReducer'
+import { startForm ,delForm,getTouchesData,getFormData} from "../../store/FormReducer";
 
-const validation = (values) => {
-    const errors = {}
-    !values.login ? errors.login = "Поле обязательно для заполнения" : errors.login = ''
-    !values.password ? errors.password = "Поле обязательно для заполнения" : errors.password = ''
-    return errors
-}
-const FormEnter = () => {
-    const [formData, setFormData] = useState({ login: '', password: '' })
-    const [formErrors, setFormErrors] = useState({})
-    const [formTouches, setFormTouches] = useState({})
+const FormEnter = ({setIsOpen}) => {
     const [checkUser,setCheckUser] = useState(true)
-
-    const [isOpen, setIsOpen] = useState(false)
 
     const navigate = useNavigate()
 
-    const validation = (values) => { // useMemo
-        const errors = {}
-        !values.login ? errors.login = "Поле обязательно для заполнения" : errors.login = ''
-        !values.password ? errors.password = "Поле обязательно для заполнения" : errors.password = ''
-        return errors
-    }
-
+    const dispatch = useDispatch()
+    const formReducer = useSelector((state)=>state.formReducer)
+    const {form,errors,touches} = formReducer
+    const validation = useMemo(()=>{
+        return (values) => {
+            const errors = {}
+            !values.login ? errors.login = "Поле обязательно для заполнения" : errors.login = ''
+            !values.password ? errors.password = "Поле обязательно для заполнения" : errors.password = ''
+            return errors
+        }
+    }) 
+    
 
     useEffect(() => {
-        setFormErrors(validation(formData))
-    }, [formData])
+        dispatch(startForm({form:{login: '', password: ''},validation:validation}))
 
-
-    const enter = () => {
-        if (formData.login && formData.password) {
-            fetch(`http://127.0.0.1:903/catalog`)
-                .then(response => response.json())
-                .then((result) => {
-                    for (let key in result){
-                        if(key === formData.login){
-                            if(result[key].password === formData.password){
-                                setCheckUser(true)
-                                localStorage.setItem('user',JSON.stringify(result[key]))
-                                navigate('/chat')
-                            }else{
-                                setCheckUser(false) 
-                            }
-                        }else{
-                            setCheckUser(false)
-                        }
-                    }
-                })
-
-        } else {
-            formTouches.login = true
-            formTouches.password = true
-            setFormErrors(validation(formData))
+        return () => {
+            dispatch(delForm())
         }
-    }
+    }, [])
+
+
     return (
         <div className="form-enter">
             <div className='form-enter__container'>
@@ -67,44 +40,45 @@ const FormEnter = () => {
                     <input
                         type='text'
                         name="login"
-                        value={formData.login}
+                        value={form?.login}
                         onChange={(e) => {
-                            setFormData((prev) => ({ ...prev, login: e.target.value }))
+                           dispatch(getFormData({field:'login',value:e.target.value}))
                         }}
-                        onBlur={(e) => {
-                            setFormTouches((prev) => ({ ...prev, login: true }))
+                        onFocus={()=>{
+                            setCheckUser(true)
                         }}
-                        onFocus={()=>setCheckUser(true)}
+                       onBlur={()=>{
+                            dispatch(getTouchesData('login'))
+                       }}
                     />
                     Логин
-                    {formErrors.login && formTouches.login && <span className="erroStyle">{formErrors.login}</span>}
+                    {errors?.login &&  touches?.login && <span className="erroStyle">{errors.login}</span>}
                 </div>
 
                 <div className="item">
                     <input
                         type='password'
                         name="password"
-                        value={formData.password}
+                        value={form?.password}
                         onChange={(e) => {
-                            setFormData((prev) => ({ ...prev, password: e.target.value }))
-
+                            dispatch(getFormData({field:'password',value:e.target.value}))
                         }}
-                        onBlur={(e) => {
-                            setFormTouches((prev) => ({ ...prev, password: true }))
+                        onFocus={()=>{
+                            setCheckUser(true)
                         }}
-                        onFocus={()=>setCheckUser(true)}
+                        onBlur={()=>{
+                            dispatch(getTouchesData('password'))
+                       }}
                     />
                     Пароль
-                    {formErrors.password && formTouches.password && <span className="erroStyle">{formErrors.password}</span>}
+                    {errors?.password && touches?.password && <span className="erroStyle">{errors.password}</span>}
                 </div>
                 { checkUser || <div className="chekUser">Неверный логин или пароль</div>}
                 <div className="buttons">
-                    <div className="btn" onClick={() => enter()} >Вход</div>
-                    {/*<Link to="/sign-up"><div className="btn btn-reg" >Регистрация</div></Link>*/}
+                    <div className="btn" onClick={() =>dispatch(onEnter(setCheckUser,navigate))} >Вход</div>
                     <div onClick={() => setIsOpen(true)} className="btn btn-reg" >Регистрация</div>
                 </div>
             </div>
-            {isOpen && <Modal setIsOpen={setIsOpen}><FormReg/></Modal>}
         </div>
     )
 }

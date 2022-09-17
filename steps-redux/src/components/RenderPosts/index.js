@@ -1,14 +1,16 @@
 import './style.scss'
-import React from 'react'
+import React, {useEffect} from 'react'
 import Post from '../Post'
+import {useDispatch, useSelector} from "react-redux";
+import {sortedPostsSelector, onGetPosts} from "../../store/postReducer";
 
-const RenderPosts = ({posts}) => {
+const RenderPosts = () => {
+  const dispatch = useDispatch()
+  const posts = useSelector(sortedPostsSelector)
 
-    posts.sort((a,b)=>{
-        if(a.date > b.date) return 1
-        if(a.date < b.date) return -1
-        if(a.date === b.date) return 0
-    })
+  useEffect(()=>{
+    dispatch(onGetPosts(2))
+  },[])
     
     return (
         <table className='posts'>
