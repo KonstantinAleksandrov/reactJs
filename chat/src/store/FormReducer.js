@@ -6,11 +6,11 @@ const initialState = {
   errors: null,
   touches: {}
 }
-const INITIAL_FORM = 'INITIAL_FORM'
-const TRUNCATE_FORM = 'TRUNCATE_FORM'
-const UPDATE_FORM = 'UPDATE_FORM'
-const VALIDATION_ERROR = 'VALIDATION_ERROR'
-const BLUR_FORM = 'BLUR_FORM'
+const INITIAL_FORM = 'form/INITIAL_FORM'
+const TRUNCATE_FORM = 'form/TRUNCATE_FORM'
+const UPDATE_FORM = 'form/UPDATE_FORM'
+const VALIDATION_ERROR = 'form/VALIDATION_ERROR'
+const BLUR_FORM = 'form/BLUR_FORM'
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -91,7 +91,7 @@ export const createUser = (getRandomColor, navigate, setIsOpen) => (dispatch, ge
 }
 
 
-export const startForm = (payload) => ({ type: INITIAL_FORM, payload })
+export const startForm = (initialForm, validation) => ({ type: INITIAL_FORM, payload: {form: initialForm, validation: validation} })
 export const delForm = (payload) => ({ type: TRUNCATE_FORM, payload })
 export const getErrors = (payload) => ({ type: VALIDATION_ERROR, payload })
 export const getFormData = (payload) => ({ type: UPDATE_FORM, payload })

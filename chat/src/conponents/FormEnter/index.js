@@ -25,7 +25,7 @@ const FormEnter = ({setIsOpen}) => {
     
 
     useEffect(() => {
-        dispatch(startForm({form:{login: '', password: ''},validation:validation}))
+        dispatch(startForm({login: '', password: ''}, validation))
 
         return () => {
             dispatch(delForm())
