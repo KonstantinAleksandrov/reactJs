@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "node-json-db": "^2.1.1"
+  },
+  "scripts": {
+    "start": "node --es-module-specifier-resolution=node index.js"
+  }
+}
