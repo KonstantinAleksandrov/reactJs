@@ -1,0 +1,35 @@
+{
+    "catalog": {},
+    "posts": [
+        {
+            "cityName": "qwe",
+            "longitude": "1",
+            "latitude": "1",
+            "id": 1663676499178
+        },
+        {
+            "cityName": "qwe3",
+            "longitude": "3",
+            "latitude": "3",
+            "id": 1663676513205
+        },
+        {
+            "cityName": "qwe2",
+            "longitude": "2",
+            "latitude": "2",
+            "id": 1663676519736
+        },
+        {
+            "cityName": "qwe5",
+            "longitude": "5",
+            "latitude": "5",
+            "id": 1663676543484
+        },
+        {
+            "cityName": "qwe0",
+            "longitude": "0",
+            "latitude": "0",
+            "id": 1663677989442
+        }
+    ]
+}
