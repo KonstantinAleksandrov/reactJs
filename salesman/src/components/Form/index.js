@@ -2,9 +2,12 @@ import { useState } from "react"
 import { setAddress } from '../../store/routeReducer'
 import { useDispatch } from 'react-redux'
 import './style.scss'
+
+const formInit = { cityName: '', longitude: '', latitude: '' }
+
 const Form = () => {
     const dispatch = useDispatch()
-    const [newAddress, setNewAddress] = useState({ cityName: '', longitude: '', latitude: '' })
+    const [newAddress, setNewAddress] = useState(formInit)
     return (
         <div className="form">
             <div className="form-title">Добавить адрес</div>
@@ -33,7 +36,7 @@ const Form = () => {
                     />
                     <span>Широта</span>
                 </div>
-                <div className="form-btn" onClick={() => { dispatch(setAddress(newAddress)); setNewAddress({ cityName: '', longitude: '', latitude: '' }) }}>Добавить</div>
+                <div className="form-btn" onClick={() => { dispatch(setAddress(newAddress)); setNewAddress(formInit) }}>Добавить</div>
             </div>
         </div>
     )

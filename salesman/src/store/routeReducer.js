@@ -38,6 +38,7 @@ export const setAddress = (newAddress) => (dispatch, getState) => {
         .then(response => response.json())
         .then(result => dispatch(drawRoute(result)))
 }
+
 export const removeAddress = (id) => (dispatch, getState) => {
     let requestOptions = {
         method: 'DELETE',

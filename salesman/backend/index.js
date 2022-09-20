@@ -10,7 +10,7 @@ const port = 900
 const db = new JsonDB(new Config("shop", true, true, '/'));
 
 
-const whitelist = ['http://localhost:3000', 'http://localhost:3001']
+const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002']
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {

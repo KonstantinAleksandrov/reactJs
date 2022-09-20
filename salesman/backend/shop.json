@@ -2,12 +2,6 @@
     "catalog": {},
     "posts": [
         {
-            "cityName": "qwe",
-            "longitude": "1",
-            "latitude": "1",
-            "id": 1663676499178
-        },
-        {
             "cityName": "qwe3",
             "longitude": "3",
             "latitude": "3",
@@ -30,6 +24,18 @@
             "longitude": "0",
             "latitude": "0",
             "id": 1663677989442
+        },
+        {
+            "cityName": "sideCity",
+            "longitude": "-1",
+            "latitude": "2",
+            "id": 1663681563037
+        },
+        {
+            "cityName": "qwe",
+            "longitude": "1",
+            "latitude": "1",
+            "id": 1663681616884
         }
     ]
 }

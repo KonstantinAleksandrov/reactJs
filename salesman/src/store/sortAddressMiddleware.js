@@ -4,6 +4,7 @@ export const sortAddressMiddleware = ({ dispatch, getState }) => (next) => (acti
     if (action.type === 'CREATE_ROUTE' || action.type === 'DEL_ADDRESS') {
         const { routeReducer } = getState()
         const addresses = routeReducer.addresses
+        const tempArr = []
         addresses.sort((a, b) => {
             const distanceA = Math.abs(Math.sqrt(Math.pow(a.longitude, 2) + Math.pow(a.latitude, 2)))
             const distanceB = Math.abs(Math.sqrt(Math.pow(b.longitude, 2) + Math.pow(b.latitude, 2)))
