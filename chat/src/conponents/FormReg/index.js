@@ -5,16 +5,9 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { startForm, getFormData, getTouchesData } from '../../store/FormReducer'
 import './style.scss'
-const FormReg = ({ setIsOpen }) => {
+import {getRandomColor} from '../../utils/colorRandomize'
 
-    function getRandomColor() {
-        let letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
+const FormReg = ({ setIsOpen }) => {
 
     const dispatch = useDispatch()
     const formReducer = useSelector((state) => state.formReducer)
@@ -40,7 +33,7 @@ const FormReg = ({ setIsOpen }) => {
     return (
         <div className="form-reg" onClick={(e) => e.stopPropagation()}>
             <div className='form-reg__container'>
-                <div className='item'>
+                <label className='item'>
                     <input
                         type='text'
                         name="login"
@@ -53,9 +46,9 @@ const FormReg = ({ setIsOpen }) => {
                     />
                     Логин
                     {errors?.login && touches?.login && <span className="erroStyle">{errors?.login}</span>}
-                </div>
+                </label>
 
-                <div className='item'>
+                <label className='item'>
                     <input
                         type='password'
                         name="password"
@@ -68,8 +61,8 @@ const FormReg = ({ setIsOpen }) => {
                     />
                     Пароль
                     {errors?.password && touches?.password && <span className="erroStyle">{errors?.password}</span>}
-                </div>
-                <div className='item'>
+                </label>
+                <label className='item'>
                     <input
                         type='password'
                         name="confirmation"
@@ -82,7 +75,7 @@ const FormReg = ({ setIsOpen }) => {
                     />
                     Повторите пароль
                     {errors?.confirmation && touches?.confirmation && <span className="erroStyle">{errors?.confirmation}</span>}
-                </div>
+                </label>
                 <div className="btn" onClick={(() => dispatch(createUser(getRandomColor, navigate, setIsOpen)))}>Регистрация</div>
             </div>
         </div>

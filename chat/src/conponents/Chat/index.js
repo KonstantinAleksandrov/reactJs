@@ -2,24 +2,20 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import './style.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { sendMessange,tick } from '../../store/ChatReducer';
+import {getUser, sendMessange, tick} from '../../store/ChatReducer';
+import {useAutoScroll} from "./useAutoScroll";
 
 const Chat = () => {
     const dispatch = useDispatch()
     const chatReducer = useSelector((state) => state.chatReducer)
-    const { messages, counter, user } = chatReducer
+    const { messages, user } = chatReducer
     const [textMessage, setTextMessage] = useState('')
 
-    const timerId = useRef(null)
-    const ul = useRef()
+    const [ul] = useAutoScroll(tick)
 
     useEffect(() => {
-        if (timerId.current) {
-            clearTimeout(timerId.current)
-            ul.current.scrollTop = ul.current.scrollHeight - ul.current.offsetHeight
-        }
-        setTimeout(dispatch, 1500, tick(counter, timerId))
-    }, [counter])
+        dispatch(getUser(JSON.parse(localStorage.getItem('user'))))
+    }, [])
 
     return (
         <div className='chat' >

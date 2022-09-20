@@ -2,10 +2,11 @@ const initialState = {
     messages: [],
     counter: 0,
     user: null
-
 }
-const UPDATE_CHAT = 'UPDATE_CHAT'
+
+export const UPDATE_CHAT = 'UPDATE_CHAT'
 const UPDATE_USER = 'UPDATE_USER'
+
 export default (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_CHAT:

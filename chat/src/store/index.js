@@ -9,4 +9,5 @@ const rootReducer = combineReducers({
     formReducer,
     chatReducer,
 })
-export const store = createStore(rootReducer,applyMiddleware(thunk,validationMiddleware,userMiddleware,logger))
+const enhancer = applyMiddleware(thunk,validationMiddleware,userMiddleware,logger)
+export const store = createStore(rootReducer,enhancer)

@@ -10,7 +10,7 @@ const port = 903
 const db = new JsonDB(new Config("shop", true, true, '/'));
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:3001',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
